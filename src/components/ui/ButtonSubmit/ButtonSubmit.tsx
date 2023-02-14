@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { FC }from 'react'
 import './ButtonSubmit.scss'
 
-export const ButtonSubmit = () => {
+interface ButtonProps {
+  name: string,
+  clickSubmit(): void, 
+};
+
+const ButtonSubmit: FC<ButtonProps> = ({name, clickSubmit}) => {
   return (
-    <div>ButtonSubmit</div>
+    <button className='button' onClick={clickSubmit}>
+        <span className='button__name'>{name}</span>
+    </button>
   )
 }
+
+export default ButtonSubmit
