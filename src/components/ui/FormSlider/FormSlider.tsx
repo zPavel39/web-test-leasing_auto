@@ -1,26 +1,39 @@
-import React, {FC} from 'react'
-import './FormSlider.scss'
+import React, { FC } from "react";
+import "./FormSlider.scss";
 
 interface SliderProps {
   name: string;
-  maxValue: string;
-  minValue: string;
+  value: string;
+  maxValue: number;
+  minValue: number;
+  setValue: (num: string) => void;
   children?: React.ReactNode;
-};
+}
 
 const FormSlider: FC<SliderProps> = ({
   name,
+  value,
   maxValue,
   minValue,
+  setValue,
   children,
 }) => {
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+
+  }
+  const getBackgroundSize = () => {
+    console.log(parseInt(value))
+   return { backgroundSize: `${(((parseInt(value)- minValue) * 100)) / (maxValue - minValue)}% 2px` };
+  }
   return (
-    <form>
+    <form className="sliderForm">
       <h2 className="sliderForm__title">{name}</h2>
       <div className="sliderForm__blockInput">
         <input
           className="sliderForm__blockInput_input"
-          placeholder={minValue}
+          value={value}
+          onChange={changeHandler}
           type="text"
         />
         {children}
@@ -29,13 +42,16 @@ const FormSlider: FC<SliderProps> = ({
         <input
           className="sliderForm__blockSlider_slider"
           type="range"
-          min={maxValue}
-          max={minValue}
-          value={minValue}
+          min={minValue}
+          max={maxValue}
+          value={value}
+          step='10000'
+          onChange={changeHandler}
+          style={getBackgroundSize()}
         />
       </div>
     </form>
-  )
-}
+  );
+};
 
 export default FormSlider;
