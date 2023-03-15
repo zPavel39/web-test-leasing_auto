@@ -1,0 +1,38 @@
+.main {
+    &__title {
+        font-weight: 900;
+        font-size: 54px;
+        line-height: 90%;
+        color: #111111;
+        max-width: 753px;
+        margin-bottom: 32px;
+    }
+    &__slider {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 51px;
+    }
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__valueBlock {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        max-width: 427px;
+        width: 100%;
+        &_label {
+            font-size: 16px;
+            line-height: 150%;
+            color: #575757;
+        }
+        &_title {
+            font-weight: 900;
+            font-size: 54px;
+            line-height: 90%;
+            color: #333333;
+        }
+    }
+}

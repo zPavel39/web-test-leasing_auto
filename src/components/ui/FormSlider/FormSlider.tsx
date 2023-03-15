@@ -7,12 +7,14 @@ interface SliderProps {
   maxValue: number;
   minValue: number;
   setValue: (num: string) => void;
+  stepValue: number;
   children?: React.ReactNode;
 }
 
 const FormSlider: FC<SliderProps> = ({
   name,
   value,
+  stepValue,
   maxValue,
   minValue,
   setValue,
@@ -22,6 +24,7 @@ const FormSlider: FC<SliderProps> = ({
     setValue(e.target.value);
 
   }
+
   const getBackgroundSize = () => {
     console.log(parseInt(value))
    return { backgroundSize: `${(((parseInt(value)- minValue) * 100)) / (maxValue - minValue)}% 2px` };
@@ -45,7 +48,7 @@ const FormSlider: FC<SliderProps> = ({
           min={minValue}
           max={maxValue}
           value={value}
-          step='10000'
+          step={stepValue}
           onChange={changeHandler}
           style={getBackgroundSize()}
         />
