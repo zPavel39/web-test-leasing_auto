@@ -5,6 +5,7 @@
     background: #ff9514;
     border-radius: 40px;
     cursor: pointer;
+    transition: all 0.4s;
     &__name {
         font-weight: 900;
         font-size: 30px;
@@ -13,5 +14,6 @@
     }
     &:hover {
         background: #111111;
+        transition: all 0.3s;
     }
 }

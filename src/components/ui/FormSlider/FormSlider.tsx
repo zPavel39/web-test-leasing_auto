@@ -3,10 +3,10 @@ import "./FormSlider.scss";
 
 interface SliderProps {
   name: string;
-  value: string;
+  value: number;
   maxValue: number;
   minValue: number;
-  setValue: (num: string) => void;
+  setValue: (num: number) => void;
   stepValue: number;
   children?: React.ReactNode;
 }
@@ -21,13 +21,11 @@ const FormSlider: FC<SliderProps> = ({
   children,
 }) => {
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-
+    setValue(+e.target.value);
   }
 
   const getBackgroundSize = () => {
-    console.log(parseInt(value))
-   return { backgroundSize: `${(((parseInt(value)- minValue) * 100)) / (maxValue - minValue)}% 2px` };
+   return { backgroundSize: `${(((value- minValue) * 100)) / (maxValue - minValue)}% 2px` };
   }
   return (
     <form className="sliderForm">
@@ -37,7 +35,7 @@ const FormSlider: FC<SliderProps> = ({
           className="sliderForm__blockInput_input"
           value={value}
           onChange={changeHandler}
-          type="text"
+          type="number"
         />
         {children}
       </div>

@@ -1,17 +1,37 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import ButtonSubmit from "../ui/ButtonSubmit/ButtonSubmit";
 import FormSlider from "../ui/FormSlider/FormSlider";
 import "./MainPage.scss";
 
 export const MainPage: FC = () => {
-  const [price, setPrice] = useState<string>("1500000");
-  const [payment, setPayment] = useState<string>("1500000");
-  const [time, setTime] = useState<string>("12");
+  const [price, setPrice] = useState<number>(1500000);
+  const [payment, setPayment] = useState<number>(150000);
+  const [time, setTime] = useState<number>(12);
+  const [percent, setPercent] = useState<number>(10);
+
+  useEffect(() => {
+    setPayment((price / 100) * 10)
+    setPercent(Math.ceil(100 / (price / payment)))
+  },[price])
+
+  useEffect(() => {
+    setPercent(Math.ceil(100 / (price / payment)))
+  },[payment])
+
+  // Подсчет общей суммы лизинговых платежей при ст
+  const valueAllSum = () => {
+    return price + (price * 0.15) - payment
+  }
+
+  // Подсчет ежемесячной суммы платежа
+  const monthPay = () => {
+    return Math.ceil(valueAllSum() / time)
+  }
   return (
     <div className="main">
       <h1 className="main__title">Рассчитайте стоимость автомобиля в лизинг</h1>
       <div className="main__slider">
-        <FormSlider
+        <FormSlider 
           name={"Стоимость автомобиля"}
           value={price}
           maxValue={10000000}
@@ -23,11 +43,11 @@ export const MainPage: FC = () => {
         <FormSlider
           name={"Первоначальный взнос"}
           value={payment}
-          maxValue={10000000}
-          minValue={1500000}
+          maxValue={(price / 100) * 70}
+          minValue={(price / 100) * 10}
           stepValue={10000}
           setValue={setPayment}
-          children={<span className="children">13%</span>}
+          children={<span className="children">{percent}&#x25;</span>}
         />
         <FormSlider
           name={"Срок лизинга"}
@@ -41,12 +61,12 @@ export const MainPage: FC = () => {
       </div>
       <div className="main__info">
         <div className="main__valueBlock">
-          <span className="main__valueBlock_label">Стоимость автомобиля</span>
-          <h3 className="main__valueBlock_title">{price}&#8381;</h3>
+          <span className="main__valueBlock_label">Сумма договора лизинга</span>
+          <h3 className="main__valueBlock_title">{valueAllSum()}&nbsp;&#8381;</h3>
         </div>
         <div className="main__valueBlock">
           <span className="main__valueBlock_label">Ежемесячный платеж от</span>
-          <h3 className="main__valueBlock_title">{payment}&#8381;</h3>
+          <h3 className="main__valueBlock_title">{monthPay()}&nbsp;&#8381;</h3>
         </div>
         <ButtonSubmit
           name="Оставить заявку"
