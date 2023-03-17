@@ -24,7 +24,7 @@ const FormSlider: FC<SliderProps> = ({
     setValue(+e.target.value);
   }
 
-  const getBackgroundSize = () => {
+  const getBackgroundSize = (): any => {
    return { backgroundSize: `${(((value- minValue) * 100)) / (maxValue - minValue)}% 2px` };
   }
   return (

@@ -10,28 +10,28 @@ export const MainPage: FC = () => {
   const [percent, setPercent] = useState<number>(10);
 
   useEffect(() => {
-    setPayment((price / 100) * 10)
-    setPercent(Math.ceil(100 / (price / payment)))
-  },[price])
+    setPayment((price / 100) * 10);
+    setPercent(Math.ceil(100 / (price / payment)));
+  }, [price]);
 
   useEffect(() => {
-    setPercent(Math.ceil(100 / (price / payment)))
-  },[payment])
+    setPercent(Math.ceil(100 / (price / payment)));
+  }, [payment]);
 
-  // Подсчет общей суммы лизинговых платежей при ст
-  const valueAllSum = () => {
-    return price + (price * 0.15) - payment
-  }
+  // Подсчет общей суммы лизинговых платежей
+  const valueAllSum = (): number => {
+    return price + price * 0.15 - payment;
+  };
 
   // Подсчет ежемесячной суммы платежа
-  const monthPay = () => {
-    return Math.ceil(valueAllSum() / time)
-  }
+  const monthPay = (): number => {
+    return Math.ceil(valueAllSum() / time);
+  };
   return (
     <div className="main">
       <h1 className="main__title">Рассчитайте стоимость автомобиля в лизинг</h1>
       <div className="main__slider">
-        <FormSlider 
+        <FormSlider
           name={"Стоимость автомобиля"}
           value={price}
           maxValue={10000000}
@@ -62,7 +62,9 @@ export const MainPage: FC = () => {
       <div className="main__info">
         <div className="main__valueBlock">
           <span className="main__valueBlock_label">Сумма договора лизинга</span>
-          <h3 className="main__valueBlock_title">{valueAllSum()}&nbsp;&#8381;</h3>
+          <h3 className="main__valueBlock_title">
+            {valueAllSum()}&nbsp;&#8381;
+          </h3>
         </div>
         <div className="main__valueBlock">
           <span className="main__valueBlock_label">Ежемесячный платеж от</span>
