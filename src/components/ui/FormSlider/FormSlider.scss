@@ -1,7 +1,7 @@
 .sliderForm {
     display: flex;
     flex-direction: column;
-    max-width: 427px;
+    width: 100%;
     &__title {
         font-weight: 400;
         font-size: 16px;
@@ -14,7 +14,7 @@
         align-items: center;
         justify-content: space-between;
         height: 68px;
-        max-width: 427px;
+        width: 100%;
         width: 100%;
         background-color: #f3f3f4;
         border-radius: 16px;
@@ -30,7 +30,7 @@
     &__blockSlider {
         display: flex;
         align-items: flex-start;
-        max-width: 379px;
+        width: 100% -48px;
         height: 1px;
         border-bottom: 1px solid #e1e1e1;
         margin: -1px 24px 0 24px;
@@ -165,4 +165,22 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+@media (max-width: 340px) {
+    .sliderForm {
+        &__title {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        &__blockInput {
+            height: 60px;
+            &_input {
+                margin-left: 20px;
+                font-size: 22px;
+            }
+        }
+    }
+    .children {
+        font-size: 22px;
+    }
 }

@@ -20,7 +20,7 @@ export const MainPage: FC = () => {
 
   // Подсчет общей суммы лизинговых платежей
   const valueAllSum = (): number => {
-    return price + price * 0.15 - payment;
+    return Math.ceil(price + price * 0.15 - payment);
   };
 
   // Подсчет ежемесячной суммы платежа

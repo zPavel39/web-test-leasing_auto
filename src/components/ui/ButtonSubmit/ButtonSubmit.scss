@@ -17,3 +17,17 @@
         transition: all 0.3s;
     }
 }
+@media (max-width: 1030px) {
+    .button {
+        max-width: 345px;
+        margin-bottom: 20px;
+    }
+}
+@media (max-width: 340px) {
+    .button {
+        &__name {
+            font-size: 22px;
+            line-height: 20px;
+        }
+    }
+}

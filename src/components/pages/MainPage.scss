@@ -1,4 +1,5 @@
 .main {
+    margin: 213px 48px 0 48px;
     &__title {
         font-weight: 900;
         font-size: 54px;
@@ -9,19 +10,18 @@
     }
     &__slider {
         display: flex;
-        gap: 20px;
+        gap: 32px;
         margin-bottom: 51px;
     }
     &__info {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        gap: 32px;
     }
     &__valueBlock {
         display: flex;
         flex-direction: column;
         gap: 8px;
-        max-width: 427px;
         width: 100%;
         &_label {
             font-size: 16px;
@@ -33,6 +33,55 @@
             font-size: 54px;
             line-height: 90%;
             color: #333333;
+        }
+    }
+}
+
+@media (max-width: 1030px) {
+    .main {
+        margin: 64px 36px 0 36px;
+        &__slider {
+            flex-direction: column;
+            margin-bottom: 44px;
+        }
+        &__info {
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 44px;
+        }
+        &__valueBlock {
+            width: max-content;
+        }
+    }
+}
+@media (max-width: 340px) {
+    .main {
+        margin: 44px 20px 0 21px;
+        &__title {
+            font-size: 34px;
+            max-width: 250px;
+        }
+        &__slider {
+            margin-bottom: 25px;
+        }
+        &__info {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 29px;
+        }
+        &__valueBlock {
+            gap: 2px;
+            &_label {
+                font-size: 14px;
+                line-height: 136%;
+            }
+            &_title {
+                font-weight: 900;
+                font-size: 22px;
+                line-height: 20px;
+            }
         }
     }
 }
